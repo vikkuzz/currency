@@ -94,3 +94,11 @@ export function parseDataString(dataString) {
   console.log(getEqual(values));
   return getEqual(values);
 }
+
+export function getCurrentTime() {
+  const currentTime = new Date();
+  const hours = currentTime.getHours().toString();
+  const minutes = currentTime.getMinutes().toString().padStart(2, "0");
+  const seconds = currentTime.getSeconds().toString().padStart(2, "0");
+  return `${hours.length < 2 ? "0" + hours : hours}:${minutes}:00`;
+}

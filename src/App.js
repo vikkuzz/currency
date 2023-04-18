@@ -2,21 +2,13 @@ import { useEffect } from "react";
 import "./App.css";
 
 import eur_usd_1min from "./datas/eur_usd_1min";
-import { parseDataString } from "./utils/functions";
+import { parseDataString, getCurrentTime } from "./utils/functions";
 import { useState } from "react";
 
 function App() {
   const [data, setData] = useState([]);
   const [partData, setPartData] = useState([]);
   const [time, setTime] = useState(getCurrentTime());
-
-  function getCurrentTime() {
-    const currentTime = new Date();
-    const hours = currentTime.getHours().toString();
-    const minutes = currentTime.getMinutes().toString().padStart(2, "0");
-    const seconds = currentTime.getSeconds().toString().padStart(2, "0");
-    return `${hours.length < 2 ? "0" + hours : hours}:${minutes}:00`;
-  }
 
   useEffect(() => {
     let preData = parseDataString(eur_usd_1min);
@@ -39,13 +31,15 @@ function App() {
         console.log("done");
       }
     }
-    console.log(time, data[8].id, result);
     setPartData(result);
   }, [time]);
 
   return (
     <div className="App">
-      <header className="App-header"></header>
+      <header className="App-header">
+        <span>Currency: EUR/USD</span>
+        <span>Timeframe: 1min</span>
+      </header>
       <div className="flex_container">
         {partData?.map((el, i) => {
           if (i < 50) {
@@ -69,7 +63,7 @@ function App() {
                   }}
                 >
                   <span>{el.id}:</span>
-                  <span>
+                  <span className="text">
                     {el.вниз > el.вверх
                       ? "вниз " + el.вниз
                       : "вверх " + el.вверх}
