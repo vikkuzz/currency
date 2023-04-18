@@ -1,23 +1,85 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import "./App.css";
+
+import eur_usd_1min from "./datas/eur_usd_1min";
+import { parseDataString } from "./utils/functions";
+import { useState } from "react";
 
 function App() {
+  const [data, setData] = useState([]);
+  const [partData, setPartData] = useState([]);
+  const [time, setTime] = useState(getCurrentTime());
+
+  function getCurrentTime() {
+    const currentTime = new Date();
+    const hours = currentTime.getHours().toString();
+    const minutes = currentTime.getMinutes().toString().padStart(2, "0");
+    const seconds = currentTime.getSeconds().toString().padStart(2, "0");
+    return `${hours.length < 2 ? "0" + hours : hours}:${minutes}:00`;
+  }
+
+  useEffect(() => {
+    let preData = parseDataString(eur_usd_1min);
+    let arrFromObj = [];
+    for (let key in preData) {
+      arrFromObj.push({ id: key, ...preData[key] });
+    }
+    setData(arrFromObj);
+    const timer = setInterval(() => setTime(getCurrentTime()), 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  useEffect(() => {
+    let result = [];
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id == getCurrentTime()) {
+        result = data.slice(i, i + 50);
+        console.log("done");
+      }
+    }
+    console.log(time, data[8].id, result);
+    setPartData(result);
+  }, [time]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header className="App-header"></header>
+      <div className="flex_container">
+        {partData?.map((el, i) => {
+          if (i < 50) {
+            return (
+              <div
+                className="height"
+                key={el.id}
+                style={{
+                  border: `${
+                    el.вниз < "69%" && el.вверх < "69%"
+                      ? "none"
+                      : "2px solid gold"
+                  }`,
+                }}
+              >
+                <span
+                  className="elem"
+                  style={{
+                    height: `${el.вниз > el.вверх ? el.вниз : el.вверх}`,
+                    backgroundColor: `${el.вниз > el.вверх ? "red" : "green"}`,
+                  }}
+                >
+                  <span>{el.id}:</span>
+                  <span>
+                    {el.вниз > el.вверх
+                      ? "вниз " + el.вниз
+                      : "вверх " + el.вверх}
+                  </span>
+                </span>
+              </div>
+            );
+          }
+        })}
+      </div>
     </div>
   );
 }
