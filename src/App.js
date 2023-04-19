@@ -17,7 +17,7 @@ function App() {
       arrFromObj.push({ id: key, ...preData[key] });
     }
     setData(arrFromObj);
-    setTime(getCurrentTime());
+
     const timer = setInterval(() => setTime(getCurrentTime()), 1000);
     return () => {
       clearInterval(timer);
@@ -29,7 +29,16 @@ function App() {
     for (let i = 0; i < data.length; i++) {
       if (data[i].id == getCurrentTime()) {
         result = data.slice(i, i + 50);
-        console.log("done");
+      }
+    }
+    setPartData(result);
+  }, [data]);
+
+  useEffect(() => {
+    let result = [];
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id == getCurrentTime()) {
+        result = data.slice(i, i + 50);
       }
     }
     setPartData(result);

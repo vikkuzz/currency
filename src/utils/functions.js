@@ -15,7 +15,6 @@ export function parseDataString(dataString) {
     }
     parsedData.push(dataObj);
   }
-  console.log(parsedData);
 
   const result = parsedData.reduce((acc, curr) => {
     const date = curr.DATE;
@@ -55,7 +54,6 @@ export function parseDataString(dataString) {
         result[key] = obj[key];
       }
     }
-    console.log(result);
     return result;
   }
   values = filterObjects(values, 1400);
@@ -91,7 +89,6 @@ export function parseDataString(dataString) {
     const finalResult = findMatchingField(arr);
     return finalResult;
   }
-  console.log(getEqual(values));
   return getEqual(values);
 }
 
