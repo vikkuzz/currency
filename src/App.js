@@ -17,6 +17,7 @@ function App() {
       arrFromObj.push({ id: key, ...preData[key] });
     }
     setData(arrFromObj);
+    setTime(getCurrentTime());
     const timer = setInterval(() => setTime(getCurrentTime()), 1000);
     return () => {
       clearInterval(timer);
