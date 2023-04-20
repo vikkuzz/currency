@@ -66,46 +66,48 @@ function App({ panel }) {
       });
     });
 
-    let panel = document.querySelector(".call-put-block");
+    function snowFall() {
+      let panel = document.querySelector(".call-put-block");
 
-    for (let i = 0; i < partData.length; i++) {
-      if (partData[i].вниз < "69%" && partData[i].вверх < "69%") {
-        count += 1;
-        if (count < 3) {
-          panel?.appendChild(
-            <div
-              className="height"
-              key={partData[i].id}
-              style={{
-                border: `${
-                  partData[i].вниз < "69%" && partData[i].вверх < "69%"
-                    ? "none"
-                    : "2px solid gold"
-                }`,
-              }}
-            >
-              <span
-                className="elem"
+      for (let i = 0; i < partData.length; i++) {
+        if (partData[i].вниз < "69%" && partData[i].вверх < "69%") {
+          count += 1;
+          if (count < 3) {
+            panel?.appendChild(
+              <div
+                className="height"
+                key={partData[i].id}
                 style={{
-                  height: `${
-                    partData[i].вниз > partData[i].вверх
-                      ? partData[i].вниз
-                      : partData[i].вверх
-                  }`,
-                  backgroundColor: `${
-                    partData[i].вниз > partData[i].вверх ? "red" : "green"
+                  border: `${
+                    partData[i].вниз < "69%" && partData[i].вверх < "69%"
+                      ? "none"
+                      : "2px solid gold"
                   }`,
                 }}
               >
-                <span>{partData[i].id}:</span>
-                <span className="text">
-                  {partData[i].вниз > partData[i].вверх
-                    ? "вниз " + partData[i].вниз
-                    : "вверх " + partData[i].вверх}
+                <span
+                  className="elem"
+                  style={{
+                    height: `${
+                      partData[i].вниз > partData[i].вверх
+                        ? partData[i].вниз
+                        : partData[i].вверх
+                    }`,
+                    backgroundColor: `${
+                      partData[i].вниз > partData[i].вверх ? "red" : "green"
+                    }`,
+                  }}
+                >
+                  <span>{partData[i].id}:</span>
+                  <span className="text">
+                    {partData[i].вниз > partData[i].вверх
+                      ? "вниз " + partData[i].вниз
+                      : "вверх " + partData[i].вверх}
+                  </span>
                 </span>
-              </span>
-            </div>
-          );
+              </div>
+            );
+          }
         }
       }
     }
