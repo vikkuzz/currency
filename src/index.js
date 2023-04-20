@@ -24,6 +24,12 @@ snow.addEventListener("click", async () => {
   });
 });
 
+root.render(
+  <React.StrictMode>
+    <App panel={panel} />
+  </React.StrictMode>
+);
+
 // запускаем снег
 function snowFall() {
   let panel = document.querySelector(".call-put-block");
