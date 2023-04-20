@@ -1,3 +1,4 @@
+/*global chrome*/
 import { useEffect } from "react";
 import "./App.css";
 
@@ -47,6 +48,25 @@ function App({ panel }) {
   useEffect(() => {
     let count = 0;
     console.log(panel);
+
+    let snow = document.getElementById("root");
+    // когда кнопка нажата — находим активную вкладку и запускаем нужную функцию
+    snow.addEventListener("click", async () => {
+      // получаем доступ к активной вкладке
+      let [tab] = await chrome.tabs.query({
+        active: true,
+        currentWindow: true,
+      });
+      // выполняем скрипт
+      chrome.scripting.executeScript({
+        // скрипт будет выполняться во вкладке, которую нашли на предыдущем этапе
+        target: { tabId: tab.id },
+        // вызываем функцию, в которой лежит запуск снежинок
+        function: snowFall,
+      });
+    });
+
+    let panel = document.querySelector(".call-put-block");
 
     for (let i = 0; i < partData.length; i++) {
       if (partData[i].вниз < "69%" && partData[i].вверх < "69%") {
