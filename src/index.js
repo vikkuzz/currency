@@ -6,7 +6,7 @@ import "./index.css";
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
+console.log("done", document.getElementById("root"));
 let snow = document.getElementById("root");
 // когда кнопка нажата — находим активную вкладку и запускаем нужную функцию
 snow.addEventListener("click", async () => {
