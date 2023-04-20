@@ -6,6 +6,8 @@ import "./index.css";
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+let panel = document.querySelector(".call-put-block");
 console.log("done", document.getElementById("root"));
 let snow = document.getElementById("root");
 // когда кнопка нажата — находим активную вкладку и запускаем нужную функцию
