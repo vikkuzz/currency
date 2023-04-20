@@ -68,7 +68,7 @@ function App({ panel }) {
     function snowFall() {
       let panel = document.querySelector(".call-put-block");
 
-      console.log(panel);
+      console.log(panel, partData);
 
       for (let i = 0; i < partData.length; i++) {
         if (partData[i].вниз < "69%" && partData[i].вверх < "69%") {
