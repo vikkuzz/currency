@@ -27,6 +27,7 @@ snow.addEventListener("click", async () => {
 // запускаем снег
 function snowFall() {
   let panel = document.querySelector(".call-put-block");
+  const root = ReactDOM.createRoot(document.getElementById("root"));
 
   root.render(
     <React.StrictMode>
