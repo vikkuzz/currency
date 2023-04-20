@@ -18,8 +18,6 @@ function App() {
     }
     setData(arrFromObj);
 
-    panel.appendChild();
-
     const timer = setInterval(() => setTime(getCurrentTime()), 1000);
     return () => {
       clearInterval(timer);
@@ -49,12 +47,13 @@ function App() {
   useEffect(() => {
     const panel = document.querySelector(".call-put-block");
     let count = 0;
+    console.log(panel);
 
     for (let i = 0; i < partData.length; i++) {
       if (partData[i].вниз < "69%" && partData[i].вверх < "69%") {
         count += 1;
         if (count < 3) {
-          panel.appendChild(
+          panel?.appendChild(
             <div
               className="height"
               key={partData[i].id}
