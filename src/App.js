@@ -47,6 +47,8 @@ function App({ panel }) {
 
   useEffect(() => {
     let count = 0;
+    console.log(partData);
+    localStorage.setItem("data", partData);
 
     let snow = document.getElementById("root");
     // когда кнопка нажата — находим активную вкладку и запускаем нужную функцию
@@ -67,6 +69,7 @@ function App({ panel }) {
 
     function snowFall() {
       let panel = document.querySelector(".call-put-block");
+      let partData = localStorage.getItem("data");
 
       console.log(panel, partData);
 
