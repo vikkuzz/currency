@@ -1,5 +1,6 @@
 // получаем доступ к кнопке
 let snow = document.getElementById("root");
+console.log(snow);
 // когда кнопка нажата — находим активную вкладку и запускаем нужную функцию
 snow.addEventListener("click", async () => {
   // получаем доступ к активной вкладке
