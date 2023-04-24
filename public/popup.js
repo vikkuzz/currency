@@ -1,5 +1,5 @@
-import eur_usd_1min from "./datas/eur_usd_1min";
-import { parseDataString } from "./utils/functions";
+import eur_usd_1min from "./datas/eur_usd_1min.js";
+import { parseDataString } from "./utils/functions.js";
 
 // получаем доступ к кнопке
 let snow = document.getElementById("root");
