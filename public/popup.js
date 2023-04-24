@@ -1,3 +1,6 @@
+import eur_usd_1min from "./datas/eur_usd_1min";
+import { parseDataString } from "./utils/functions";
+
 // получаем доступ к кнопке
 let snow = document.getElementById("root");
 console.log(snow);
@@ -9,7 +12,7 @@ snow.addEventListener("click", async () => {
   chrome.scripting.executeScript({
     // скрипт будет выполняться во вкладке, которую нашли на предыдущем этапе
     target: { tabId: tab.id },
-    // вызываем функцию, в которой лежит запуск снежинок
+    // вызываем функцию
     function: snowFall,
   });
 });
@@ -17,6 +20,11 @@ snow.addEventListener("click", async () => {
 // запускаем снег
 function snowFall() {
   let panel = document.querySelector(".call-put-block");
-  const btn = document.createElement("button");
-  panel.appendChild(btn);
+  const btn1 = document.createElement("button");
+  const btn2 = document.createElement("button");
+
+  console.log(parseDataString(eur_usd_1min));
+
+  panel.appendChild(btn1);
+  panel.appendChild(btn2);
 }
