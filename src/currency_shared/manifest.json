@@ -1,0 +1,20 @@
+{
+  "name": "Статистика тренда валют",
+  "description": "Личный проект Vikkuzz",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": ["activeTab", "scripting"],
+  
+
+  "action": {
+    "default_icon": {
+      "32": "/images/trend32.png",
+      "64": "/images/trend64.png"
+    },
+    "default_popup": "index.html"
+  },
+  "icons": {
+    "32": "/images/trend32.png",
+    "64": "/images/trend64.png"
+  }
+}

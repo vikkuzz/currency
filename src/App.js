@@ -43,36 +43,32 @@ function App() {
       </header>
       <div className="flex_container">
         {partData?.map((el, i) => {
-          if (i < 50) {
-            return (
-              <div
-                className="height"
-                key={el.id}
+          return (
+            <div
+              className="height"
+              key={el.id}
+              style={{
+                border: `${
+                  el.вниз < "69%" && el.вверх < "69%"
+                    ? "none"
+                    : "2px solid gold"
+                }`,
+              }}
+            >
+              <span
+                className="elem"
                 style={{
-                  border: `${
-                    el.вниз < "69%" && el.вверх < "69%"
-                      ? "none"
-                      : "2px solid gold"
-                  }`,
+                  height: `${el.вниз > el.вверх ? el.вниз : el.вверх}`,
+                  backgroundColor: `${el.вниз > el.вверх ? "red" : "green"}`,
                 }}
               >
-                <span
-                  className="elem"
-                  style={{
-                    height: `${el.вниз > el.вверх ? el.вниз : el.вверх}`,
-                    backgroundColor: `${el.вниз > el.вверх ? "red" : "green"}`,
-                  }}
-                >
-                  <span>{el.id}:</span>
-                  <span className="text">
-                    {el.вниз > el.вверх
-                      ? "вниз " + el.вниз
-                      : "вверх " + el.вверх}
-                  </span>
+                <span>{el.id}:</span>
+                <span className="text">
+                  {el.вниз > el.вверх ? "вниз " + el.вниз : "вверх " + el.вверх}
                 </span>
-              </div>
-            );
-          }
+              </span>
+            </div>
+          );
         })}
       </div>
     </div>
