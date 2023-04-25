@@ -23,7 +23,7 @@ function snowFall() {
   const btn1 = document.createElement("button");
   const btn2 = document.createElement("button");
 
-  const url = chrome.runtime.getURL("./datas/eur_usd_1min.js");
+  const url = chrome.runtime.getURL("eur_usd_1min.js");
   import(url).then((module) => {
     console.log(module);
     // Ваш код здесь
