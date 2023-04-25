@@ -13,7 +13,7 @@ snow.addEventListener("click", async () => {
     // скрипт будет выполняться во вкладке, которую нашли на предыдущем этапе
     target: { tabId: tab.id },
     // вызываем функцию
-    function: snowFall,
+    function: parseDataString,
   });
 });
 

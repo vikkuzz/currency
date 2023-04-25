@@ -1,5 +1,6 @@
 export function parseDataString(dataString) {
   const lines = dataString.trim().split("\n");
+  console.log("done");
 
   const keys = lines[0]
     .split(";")
