@@ -23,8 +23,8 @@ function snowFall() {
   const btn1 = document.createElement("button");
   const btn2 = document.createElement("button");
 
-  const result = parseDataString(eur_usd_1min);
-  console.log(result);
+  //const result = parseDataString(eur_usd_1min);
+  console.log(parseDataString);
 
   panel.appendChild(btn1);
   panel.appendChild(btn2);
