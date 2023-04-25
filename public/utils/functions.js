@@ -1,6 +1,7 @@
 import eur_usd_1min from "../datas/eur_usd_1min";
 
 export function parseDataString(dataString = eur_usd_1min) {
+  console.log("done");
   console.log(dataString);
   const lines = dataString.trim().split("\n");
 
