@@ -1,6 +1,8 @@
-export function parseDataString(dataString) {
+import eur_usd_1min from "../datas/eur_usd_1min";
+
+export function parseDataString(dataString = eur_usd_1min) {
+  console.log(eur_usd_1min);
   const lines = dataString.trim().split("\n");
-  console.log("done");
 
   const keys = lines[0]
     .split(";")
