@@ -23,7 +23,13 @@ function snowFall() {
   const btn1 = document.createElement("button");
   const btn2 = document.createElement("button");
 
-  console.log(parseDataString(eur_usd_1min));
+  const url = chrome.runtime.getURL("./datas/eur_usd_1min.js");
+  import(url).then((module) => {
+    console.log(module);
+    // Ваш код здесь
+  });
+
+  //console.log(parseDataString(eur_usd_1min));
 
   panel.appendChild(btn1);
   panel.appendChild(btn2);
