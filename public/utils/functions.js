@@ -63,6 +63,9 @@ export function parseDataString(dataString = eur_usd_1min) {
   values = filterObjects(values, 1400);
 
   function getEqual(obj) {
+    if (!obj) {
+      return;
+    }
     let arr = [];
 
     for (let key in obj) {
@@ -70,6 +73,9 @@ export function parseDataString(dataString = eur_usd_1min) {
     }
 
     function findMatchingField(objectsArray) {
+      if (!objectsArray) {
+        return;
+      }
       const keys = Object.keys(objectsArray[0]);
       let result = {};
       for (let key of keys) {

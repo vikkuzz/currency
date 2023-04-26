@@ -59,3 +59,12 @@ header{
 .text{
   padding-bottom: 6px;
 }
+.input_text{
+  color: white;
+}
+.input_wrapper{
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding: 12px;
+}
