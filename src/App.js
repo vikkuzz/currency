@@ -93,7 +93,12 @@ function App() {
         <span className="input_text">
           за сколько дней рассчитывать статистику?
         </span>
-        <input defaultValue={range} type="tel" onBlur={changeRange}></input>
+        <input
+          className="input"
+          defaultValue={range}
+          type="tel"
+          onBlur={changeRange}
+        ></input>
       </div>
       <div className="flex_container">
         {partData?.map((el, i) => {

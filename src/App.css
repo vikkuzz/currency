@@ -68,3 +68,6 @@ header{
   justify-content: center;
   padding: 12px;
 }
+.input{
+  width: 50px;
+}
