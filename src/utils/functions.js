@@ -141,20 +141,43 @@ export function getLastNDates(dataString, days) {
     const month = parseInt(dateParts[1]) - 1;
     const day = parseInt(dateParts[0]);
     const date = new Date(year, month, day);
-
     return date;
   }
+
+  function subtractDaysFromDate(date, days) {
+    const inputDate = new Date(date);
+    const timestamp = inputDate.getTime() - days * 24 * 60 * 60 * 1000;
+    const outputDate = new Date(timestamp);
+    const day = outputDate.getDate().toString().padStart(2, "0");
+    const month = (outputDate.getMonth() + 1).toString().padStart(2, "0");
+    const year = outputDate.getFullYear().toString().slice(-2);
+    return `${day}/${month}/${year}`;
+  }
+
+  function filterDataFromDate(data, date) {
+    const rows = data.split("\n");
+    const index = rows.findIndex((row) => row.startsWith(date));
+    if (index === -1) {
+      console.log("wtf?");
+      return data;
+    }
+    console.log(rows[index]);
+    const filteredRows = rows.slice(index);
+    return `${rows[0]}\n${filteredRows.join("\n")}`;
+  }
+
   const rows = dataString.trim().split("\n"); // Разбиваем на строки и удаляем лишние пробельные символы
   const lastRow = rows[rows.length - 1]; // Получаем последнюю строку
-  const firstRow = rows[0]; // Получаем последнюю строку
+  const firstRow = rows[0]; // Получаем первую строку
   const lastDate = getDateFromString(lastRow); // Получаем дату из последней строки
-  const cutoffDate = new Date(lastDate - days * 24 * 60 * 60 * 1000); // Вычисляем дату-порог, от которой оставляем данные
+  const cutoffDate = subtractDaysFromDate(lastDate, days);
 
   // Фильтруем строки по дате и объединяем их в строку
 
-  const result = `${firstRow}\n${rows
-    .filter((row) => new Date(row.slice(0, 8)) <= cutoffDate)
-    .join("\n")}`;
+  const result = filterDataFromDate(dataString, cutoffDate);
+  //   .filter((row) => new Date(row.slice(0, 8)) <= cutoffDate)
+  //   .join("\n")}`;
+  console.log(cutoffDate, days, result);
   return result;
 }
 

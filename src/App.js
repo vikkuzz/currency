@@ -20,8 +20,8 @@ function App() {
   const [partData, setPartData] = useState([]);
   const [time, setTime] = useState(getCurrentTime());
   const [timeframe, setTimeframe] = useState("1min");
-  const [range, setRange] = useState(99);
-  const [rangeData, setRangeData] = useState(getLastNDates(eur_usd_1min, 99));
+  const [range, setRange] = useState(30);
+  //const [rangeData, setRangeData] = useState(getLastNDates(eur_usd_1min, 30));
 
   console.log("counter: ", (count += 1));
 
@@ -60,17 +60,20 @@ function App() {
   }, [data]);
 
   useEffect(() => {
-    preData = parseDataString(
-      timeframe == "1min" ? eur_usd_1min : eur_usd_5min,
-      timeframe == "1min" ? 1 : 5
-    );
+    let tableString = timeframe == "1min" ? eur_usd_1min : eur_usd_5min;
+    tableString = getLastNDates(tableString, range);
+    preData = parseDataString(tableString, timeframe == "1min" ? 1 : 5);
     getData(preData, setData);
-  }, [timeframe, time]);
+  }, [timeframe, time, range]);
 
   const getCurrentTimeframe = (e) => {
     setTimeframe(e.target.value);
   };
   const changeRange = (e) => {
+    let value = e.target.value;
+    if (e.target.value === "") {
+      value = 1;
+    }
     setRange(e.target.value);
     console.log("onblur", e.target.value);
   };
@@ -90,7 +93,12 @@ function App() {
         <span className="input_text">
           за сколько дней рассчитывать статистику?
         </span>
-        <input type="tel" onBlur={changeRange}></input>
+        <input
+          defaultValue={range}
+          type="tel"
+          onBlur={changeRange}
+          //onChange={changeRange}
+        ></input>
       </div>
       <div className="flex_container">
         {partData?.map((el, i) => {
